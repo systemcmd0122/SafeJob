@@ -6,7 +6,7 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 require('dotenv').config();
 
 const app = express();
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 8000;
 
 // ミドルウェアの設定
 app.use(cors());

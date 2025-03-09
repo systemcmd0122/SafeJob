@@ -1,0 +1,30 @@
+{
+  "timestamp": "2025-03-09T03:27:06.042Z",
+  "jobDescription": "都内オフィスでの一般事務のアルバイトです。時給1,200円、交通費支給。勤務時間は平日10時〜17時。書類整理やデータ入力が主な業務です。社会保険完備、研修制度あり。正社員登用制度もあります。",
+  "analysisResult": {
+    "isSafe": true,
+    "safetyScore": 85,
+    "warningFlags": [],
+    "reasonsForConcern": [],
+    "legalIssues": [],
+    "redFlags": {
+      "unrealisticPay": false,
+      "lackOfCompanyInfo": false,
+      "requestForPersonalInfo": false,
+      "unclearJobDescription": false,
+      "illegalActivity": false
+    },
+    "safetyAnalysis": "この求人情報は、都内オフィスでの一般事務アルバイトであり、時給、勤務時間、業務内容、福利厚生（社会保険完備、研修制度）、正社員登用制度など、正規のアルバイトとして一般的な情報が記載されています。 特に疑わしい点や危険性を示す要素は見当たりません。時給も都内のアルバイトとしては平均的であり、業務内容も事務作業として妥当です。",
+    "recommendedActions": [
+      "求人を出している企業について、インターネット等で情報を確認する。（企業名が明記されていない場合は、求人媒体を確認）",
+      "面接の際に、業務内容や勤務条件について詳細を確認する。",
+      "雇用契約書を必ず確認し、不明な点は質問する。"
+    ],
+    "alternativeJobSuggestions": [
+      "求人サイトで他の事務アルバイトを探す",
+      "ハローワークで相談する",
+      "大学のキャリアセンターで相談する"
+    ],
+    "confidenceLevel": 90
+  }
+}

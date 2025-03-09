@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const API_URL = 'http://localhost:3001';
+    const API_URL = 'http://localhost:8000';
     let charts = {};
 
     // サンプル求人データ
