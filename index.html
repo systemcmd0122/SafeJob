@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>求人安全性分析ツール v2.0</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Chart.jsの追加 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>求人安全性分析ツール v2.0</h1>
+            <p>闇バイトのリスクを検出するAI搭載ツール</p>
+        </header>
+
+        <nav class="tabs">
+            <button class="tab-btn active" data-tab="analyzer">求人分析</button>
+            <button class="tab-btn" data-tab="history">過去の分析結果</button>
+            <button class="tab-btn" data-tab="statistics">統計情報</button>
+        </nav>
+
+        <main>
+            <div id="error-message" class="error-message hidden"></div>
+
+            <section id="analyzer" class="tab-content active">
+                <div class="input-section">
+                    <h2>求人内容を入力</h2>
+                    <form id="analysis-form">
+                        <textarea
+                            id="job-description"
+                            placeholder="求人内容を入力してください..."
+                            rows="6"
+                            required
+                        ></textarea>
+                        <div class="button-group">
+                            <button type="submit" id="analyze-btn">分析開始</button>
+                            <button type="button" id="clear-btn">クリア</button>
+                        </div>
+                    </form>
+
+                    <div class="sample-jobs">
+                        <h3>サンプル求人</h3>
+                        <div class="sample-buttons">
+                            <button class="sample-btn" data-sample="safe">安全な一般事務</button>
+                            <button class="sample-btn" data-sample="suspicious">怪しい高額バイト</button>
+                            <button class="sample-btn" data-sample="dangerous">闇営業系</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="analysis-result" class="results-section hidden">
+                    <h2>分析結果</h2>
+                    <div class="result-card">
+                        <div class="safety-status">
+                            <span class="status-icon"></span>
+                            <span class="status-text"></span>
+                        </div>
+
+                        <div class="analysis-summary">
+                            <div class="chart-container">
+                                <canvas id="safetyRadarChart"></canvas>
+                            </div>
+                            <div class="scores">
+                                <div class="score-item">
+                                    <h4>安全性スコア</h4>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill safety-score"></div>
+                                        <span class="progress-text"></span>
+                                    </div>
+                                </div>
+
+                                <div class="score-item">
+                                    <h4>分析確信度</h4>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill confidence-score"></div>
+                                        <span class="progress-text"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="detailed-analysis">
+                            <div class="red-flags">
+                                <h4>危険シグナル分析</h4>
+                                <div class="chart-container">
+                                    <canvas id="redFlagsChart"></canvas>
+                                </div>
+                                <ul class="flags-list"></ul>
+                            </div>
+
+                            <div class="warning-flags">
+                                <h4>警告フラグ</h4>
+                                <ul class="warnings-list"></ul>
+                            </div>
+
+                            <div class="analysis-detail">
+                                <h4>詳細分析</h4>
+                                <div class="analysis-text-container">
+                                    <p class="analysis-text"></p>
+                                </div>
+                            </div>
+
+                            <div class="risk-factors">
+                                <h4>リスク要因の詳細分析</h4>
+                                <div class="chart-container">
+                                    <canvas id="riskFactorsChart"></canvas>
+                                </div>
+                            </div>
+
+                            <div class="recommendations">
+                                <h4>推奨される行動</h4>
+                                <ul class="actions-list"></ul>
+                            </div>
+
+                            <div class="comparative-analysis">
+                                <h4>類似求人との比較</h4>
+                                <div class="chart-container">
+                                    <canvas id="comparativeChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="history" class="tab-content">
+                <h2>過去の分析結果</h2>
+                <div class="history-filters">
+                    <select id="history-sort">
+                        <option value="date-desc">日付（新しい順）</option>
+                        <option value="date-asc">日付（古い順）</option>
+                        <option value="score-desc">安全性スコア（高い順）</option>
+                        <option value="score-asc">安全性スコア（低い順）</option>
+                    </select>
+                    <select id="history-filter">
+                        <option value="all">すべて</option>
+                        <option value="safe">安全な求人のみ</option>
+                        <option value="unsafe">危険な求人のみ</option>
+                    </select>
+                </div>
+                <div class="history-list"></div>
+            </section>
+
+            <section id="statistics" class="tab-content">
+                <h2>統計情報</h2>
+                <div class="statistics-grid">
+                    <div class="stat-card">
+                        <h3>全体の安全性分布</h3>
+                        <div class="chart-container">
+                            <canvas id="safetyDistributionChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <h3>危険シグナルの出現頻度</h3>
+                        <div class="chart-container">
+                            <canvas id="redFlagsFrequencyChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <h3>月別分析件数推移</h3>
+                        <div class="chart-container">
+                            <canvas id="monthlyAnalysisChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <h3>危険度別の分布</h3>
+                        <div class="chart-container">
+                            <canvas id="riskDistributionChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>© 2024 求人安全性分析ツール. All rights reserved.</p>
+        </footer>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
