@@ -1,0 +1,31 @@
+{
+  "timestamp": "2025-03-07T00:46:46.040Z",
+  "jobDescription": "スーパーのレジ店員　時給：952円　勤務時間：17〜21時勤務地：自宅から自転車で10分",
+  "analysisResult": {
+    "isSafe": true,
+    "safetyScore": 95,
+    "warningFlags": [],
+    "reasonsForConcern": [],
+    "legalIssues": [],
+    "redFlags": {
+      "unrealisticPay": false,
+      "lackOfCompanyInfo": false,
+      "requestForPersonalInfo": false,
+      "unclearJobDescription": false,
+      "illegalActivity": false
+    },
+    "safetyAnalysis": "この求人情報は、スーパーのレジ店員であり、時給、勤務時間、勤務地が明示されており、闇バイトの特徴は見られません。時給は地域最低賃金に近い水準であり、非現実的な高額報酬ではありません。勤務地も自宅から自転車で10分という具体的な記述があり、不審な点はありません。レジ店員という仕事内容も一般的であり、違法行為を想起させる要素はありません。",
+    "recommendedActions": [
+      "求人を出しているスーパーの情報を確認する（ウェブサイトや電話番号など）。",
+      "面接の際に労働条件（勤務時間、休憩時間、給与支払い方法など）を詳細に確認する。",
+      "雇用契約書を必ず確認し、不明な点があれば質問する。"
+    ],
+    "alternativeJobSuggestions": [
+      "近隣の他のスーパーマーケットのレジ店員",
+      "コンビニエンスストアの店員",
+      "ドラッグストアの店員",
+      "飲食店でのアルバイト"
+    ],
+    "confidenceLevel": 98
+  }
+}

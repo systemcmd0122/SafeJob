@@ -1,0 +1,32 @@
+{
+  "timestamp": "2025-03-07T00:44:00.629Z",
+  "jobDescription": "タイトル: 🏪【アルバイト募集】コンビニスタッフ（週2日～OK！）🏪",
+  "analysisResult": {
+    "isSafe": true,
+    "safetyScore": 95,
+    "warningFlags": [],
+    "reasonsForConcern": [],
+    "legalIssues": [],
+    "redFlags": {
+      "unrealisticPay": false,
+      "lackOfCompanyInfo": false,
+      "requestForPersonalInfo": false,
+      "unclearJobDescription": false,
+      "illegalActivity": false
+    },
+    "safetyAnalysis": "この求人情報は、タイトルから判断する限り、一般的なコンビニエンスストアのアルバイト募集であり、特に危険な要素は見当たりません。週2日からの勤務が可能である点も、一般的なアルバイトの条件として妥当です。ただし、求人情報の詳細（企業名、時給、業務内容の詳細など）が不明なため、応募前に確認することが重要です。",
+    "recommendedActions": [
+      "応募前に企業名、時給、勤務地、具体的な業務内容、応募資格などを確認してください。",
+      "企業のウェブサイトや評判を調べて、信頼できる企業かどうかを確認してください。",
+      "面接の際に、労働条件や雇用契約について詳しく質問してください。",
+      "雇用契約書をよく読み、不明な点があれば必ず質問してください。"
+    ],
+    "alternativeJobSuggestions": [
+      "近隣の他のコンビニエンスストアのアルバイト",
+      "スーパーマーケットのレジスタッフ",
+      "飲食店（カフェ、レストランなど）のホールスタッフ",
+      "ドラッグストアの販売スタッフ"
+    ],
+    "confidenceLevel": 85
+  }
+}

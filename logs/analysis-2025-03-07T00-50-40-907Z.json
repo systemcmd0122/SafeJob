@@ -1,0 +1,36 @@
+{
+  "timestamp": "2025-03-07T00:50:40.907Z",
+  "jobDescription": "タイトル: 💻【在宅ワーク】データ入力スタッフ募集！初心者OK！💻",
+  "analysisResult": {
+    "isSafe": true,
+    "safetyScore": 75,
+    "warningFlags": [],
+    "reasonsForConcern": [
+      "仕事内容が具体的に示されていないため、データ入力の内容によっては危険な情報（個人情報、機密情報）を扱う可能性がある。",
+      "在宅ワークであるため、連絡が途絶えやすい可能性がある。"
+    ],
+    "legalIssues": [],
+    "redFlags": {
+      "unrealisticPay": false,
+      "lackOfCompanyInfo": false,
+      "requestForPersonalInfo": false,
+      "unclearJobDescription": false,
+      "illegalActivity": false
+    },
+    "safetyAnalysis": "求人情報自体には直接的な危険性を示す記述は見当たりませんが、データ入力という業務内容の曖昧さから、情報が悪用されるリスクが考えられます。会社情報や具体的な業務内容が明確に記載されていれば、より安全な求人であると判断できます。",
+    "recommendedActions": [
+      "応募前に会社情報を詳しく調べる（会社名、所在地、連絡先など）。",
+      "具体的な仕事内容（入力するデータの種類、量、頻度など）を応募先企業に確認する。",
+      "給与体系（時給、日給、完全出来高制など）を確認する。",
+      "個人情報を安易に提供しない。",
+      "業務開始前に契約書を交わすことを要求する。",
+      "少しでも怪しいと感じたら、応募を控える。"
+    ],
+    "alternativeJobSuggestions": [
+      "クラウドソーシングサイトでのデータ入力業務",
+      "派遣会社経由でのデータ入力業務",
+      "企業が直接募集するデータ入力業務（会社情報が明確なもの）"
+    ],
+    "confidenceLevel": 80
+  }
+}
