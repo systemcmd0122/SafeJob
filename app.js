@@ -441,36 +441,120 @@ document.addEventListener('DOMContentLoaded', () => {
             .join('') : '<p>表示する分析結果がありません。</p>';
     }
 
-    function createHistoryItem(analysis) {
-        const date = new Date(analysis.timestamp).toLocaleString('ja-JP');
-        const result = analysis.analysisResult;
-        
-        return `
-            <div class="history-item">
+    // createHistoryItem関数を以下のように変更
+function createHistoryItem(analysis) {
+    const date = new Date(analysis.timestamp).toLocaleString('ja-JP');
+    const result = analysis.analysisResult;
+    
+    return `
+        <div class="history-item">
+            <div class="history-header">
                 <div class="history-date">${date}</div>
-                <div class="history-job">
-                    <strong>求人内容:</strong>
-                    <p>${analysis.jobDescription}</p>
-                </div>
-                <div class="history-result ${result.isSafe ? 'safe' : 'unsafe'}">
-                    <span class="status-icon">
-                        ${result.isSafe ? '✓' : '⚠'}
-                    </span>
-                    <span class="status-text">
-                        ${result.isSafe ? '安全な正規バイト' : '危険な闇バイトの可能性'}
-                    </span>
-                    <div class="history-score">
-                        安全性スコア: ${result.safetyScore}%
-                    </div>
-                </div>
-                <div class="history-details">
-                    <button class="show-details-btn" onclick="showAnalysisDetails(${JSON.stringify(result).replace(/"/g, '&quot;')})">
-                        詳細を表示
-                    </button>
+                <button class="toggle-details-btn" onclick="toggleDetails(this)">
+                    詳細を表示
+                </button>
+            </div>
+            <div class="history-job">
+                <strong>求人内容:</strong>
+                <p>${analysis.jobDescription}</p>
+            </div>
+            <div class="history-result ${result.isSafe ? 'safe' : 'unsafe'}">
+                <span class="status-icon">
+                    ${result.isSafe ? '✓' : '⚠'}
+                </span>
+                <span class="status-text">
+                    ${result.isSafe ? '安全な正規バイト' : '危険な闇バイトの可能性'}
+                </span>
+                <div class="history-score">
+                    安全性スコア: ${result.safetyScore}%
                 </div>
             </div>
-        `;
+            <div class="history-details" style="display: none;">
+                <div class="details-grid">
+                    <div class="details-section">
+                        <h4>安全性スコア詳細</h4>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${result.safetyScore}%; 
+                                 background-color: ${getScoreColor(result.safetyScore)}">
+                            </div>
+                            <span class="progress-text">${result.safetyScore}%</span>
+                        </div>
+                        <div class="progress-bar confidence-bar">
+                            <div class="progress-fill" style="width: ${result.confidenceLevel}%; 
+                                 background-color: ${getScoreColor(result.confidenceLevel)}">
+                            </div>
+                            <span class="progress-text">${result.confidenceLevel}%</span>
+                        </div>
+                        <p>分析確信度: ${result.confidenceLevel}%</p>
+                    </div>
+                    
+                    <div class="details-section">
+                        <h4>検出された危険シグナル</h4>
+                        <ul class="details-flags-list">
+                            ${Object.entries(result.redFlags)
+                                .map(([key, value]) => `
+                                    <li class="${value ? 'detected' : 'safe'}">
+                                        ${value ? '⚠' : '✓'} ${formatFlagKey(key)}
+                                    </li>
+                                `).join('')}
+                        </ul>
+                    </div>
+
+                    ${result.warningFlags.length > 0 ? `
+                        <div class="details-section">
+                            <h4>警告フラグ</h4>
+                            <ul class="details-warnings-list">
+                                ${result.warningFlags.map(warning => `
+                                    <li>⚠ ${warning}</li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                    ` : ''}
+
+                    <div class="details-section">
+                        <h4>分析詳細</h4>
+                        <p class="details-analysis-text">${result.safetyAnalysis}</p>
+                    </div>
+
+                    ${result.recommendedActions.length > 0 ? `
+                        <div class="details-section">
+                            <h4>推奨される行動</h4>
+                            <ul class="details-actions-list">
+                                ${result.recommendedActions.map(action => `
+                                    <li>→ ${action}</li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                    ` : ''}
+
+                    ${result.alternativeJobSuggestions.length > 0 ? `
+                        <div class="details-section">
+                            <h4>代替求人の提案</h4>
+                            <ul class="details-suggestions-list">
+                                ${result.alternativeJobSuggestions.map(suggestion => `
+                                    <li>• ${suggestion}</li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                    ` : ''}
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+// 詳細の表示/非表示を切り替える関数
+window.toggleDetails = function(button) {
+    const detailsSection = button.closest('.history-item').querySelector('.history-details');
+    const isHidden = detailsSection.style.display === 'none';
+    
+    detailsSection.style.display = isHidden ? 'block' : 'none';
+    button.textContent = isHidden ? '詳細を隠す' : '詳細を表示';
+    
+    if (isHidden) {
+        detailsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
+};
 
     // 分析詳細モーダル
     window.showAnalysisDetails = function(result) {
